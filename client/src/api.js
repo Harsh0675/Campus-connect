@@ -1,4 +1,5 @@
 const TOKEN_KEY = "cc_token";
+const API_BASE_URL = import.meta.env.VITE_API_URL || "";
 
 export function getToken() {
   return localStorage.getItem(TOKEN_KEY);
@@ -6,7 +7,7 @@ export function getToken() {
 
 export async function api(path, options = {}) {
   const token = getToken();
-  const res = await fetch(path, {
+  const res = await fetch(`${API_BASE_URL}${path}`, {
     ...options,
     headers: {
       "Content-Type": "application/json",
